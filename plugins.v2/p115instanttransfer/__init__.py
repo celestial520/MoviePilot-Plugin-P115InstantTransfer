@@ -222,6 +222,10 @@ class P115InstantTransfer(_PluginBase):
         # 本插件不注册自定义 API
         return []
 
+    def get_page(self) -> List[Dict[str, Any]]:
+        # 本插件无独立数据页面
+        return []
+
     @eventmanager.register(EventType.PluginAction)
     def handle_event(self, event):
         if not event:
