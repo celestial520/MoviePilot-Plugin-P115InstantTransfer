@@ -26,7 +26,7 @@ import time
 from datetime import datetime
 from typing import Any, Dict, List, Optional, Tuple
 
-from app.core.plugin import PluginBase
+from app.plugins import _PluginBase
 from app.core.event import eventmanager
 from app.schemas import Notification
 from app.schemas.types import EventType, NotificationType
@@ -34,7 +34,7 @@ from app.db.plugindata_oper import PluginDataOper
 from app.log import logger
 
 
-class P115InstantTransfer(PluginBase):
+class P115InstantTransfer(_PluginBase):
     # ---------------- 插件元信息 ----------------
     plugin_name = "115秒传监控"
     plugin_desc = "监控文件夹验证115网盘秒传：能秒传则秒传后移入回收目录并通知，不能则次日重试。"
@@ -217,6 +217,10 @@ class P115InstantTransfer(PluginBase):
             "category": "115秒传",
             "data": {"action": "p115_status"},
         }]
+
+    def get_api(self) -> List[Dict[str, Any]]:
+        # 本插件不注册自定义 API
+        return []
 
     @eventmanager.register(EventType.PluginAction)
     def handle_event(self, event):
@@ -501,8 +505,8 @@ class P115InstantTransfer(PluginBase):
         if not self.config.get("notify", True):
             return
         try:
-            from app.command import CommandChian
-            CommandChian().post_message(Notification(
+            from app.command import CommandChain
+            CommandChain().post_message(Notification(
                 mtype=NotificationType.Manual, title=title, text=text, image=image))
             return
         except Exception as e:
