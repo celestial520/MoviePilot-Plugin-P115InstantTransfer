@@ -1,0 +1,11 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+
+# 工作区无关目录
+.codebuddy/
+
+# 本地测试桩（不应进入插件仓库）
+/tmp/ptest/
