@@ -1,0 +1,17 @@
+{
+  "P115InstantTransfer": {
+    "name": "115秒传监控",
+    "description": "监控文件夹验证115网盘秒传：能秒传则秒传后移入回收目录并微信通知，不能则拦截并次日重试。",
+    "labels": "115,网盘,自动化,秒传",
+    "version": "1.0.0",
+    "icon": "https://raw.githubusercontent.com/jxxghp/MoviePilot-Frontend/refs/heads/v2/src/assets/images/misc/u115.png",
+    "author": "celestial520",
+    "level": 1,
+    "v2": true,
+    "v3": true,
+    "release": false,
+    "history": {
+      "v1.0.0": "初始版本：监控文件夹验证115秒传，秒传成功移入回收目录并微信通知，不能秒传则拦截并次日重试"
+    }
+  }
+}
